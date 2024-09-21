@@ -31,7 +31,7 @@ int main(int argc, char* args[]){
 
 	Ball ball(Vector2f(WINDOW_WIDTH/2, WINDOW_HEIGHT/2), ballTexture);
 	Tile tileLeft(Vector2f(0, WINDOW_HEIGHT/2), tileTexture, 3.0f, 5.0f);
-
+	Tile tileRight(Vector2f(WINDOW_WIDTH-(32 * 3.0f), WINDOW_HEIGHT/2), tileTexture, 3.0f, 5.0f);
 
 	bool gameRunning = true;
 
@@ -58,6 +58,14 @@ int main(int argc, char* args[]){
 					case SDLK_DOWN:
 						tileLeft.moveDown(deltaTime, WINDOW_HEIGHT);
 						break;
+
+					case SDLK_w:
+						tileRight.moveUp(deltaTime, WINDOW_HEIGHT);
+						break;
+
+					case SDLK_s:
+						tileRight.moveDown(deltaTime, WINDOW_HEIGHT);
+						break;
 				}
 			}
 		}
@@ -77,6 +85,7 @@ int main(int argc, char* args[]){
 		//render here
 		window.render(ball);
 		window.render(tileLeft);
+		window.render(tileRight);
 
 		window.display();
 	}
