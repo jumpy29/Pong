@@ -23,7 +23,7 @@ void Tile::moveUp(float p_deltaTime, int p_windowHeight){
 
 	setPosY(getPos().y - (getVelocityY()*p_deltaTime));
 
-	if (getPos().y<=0){
+	if (getPos().y + (getCurrentFrame().h*getScaleY())<=0){
 		setPosY(p_windowHeight);
 	}
 }

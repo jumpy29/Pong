@@ -37,7 +37,7 @@ int main(int argc, char* args[]){
 
 	Uint32 lastFrameTime = SDL_GetTicks();
 	float deltaTime = 0.016f;
-	float accumulator = 0.0f;
+
 
 	//events
 	SDL_Event event;
@@ -53,11 +53,11 @@ int main(int argc, char* args[]){
 				switch (event.key.keysym.sym){
 					case SDLK_UP:
 						tileLeft.moveUp(deltaTime, WINDOW_HEIGHT);
-					break;
+						break;
 
 					case SDLK_DOWN:
 						tileLeft.moveDown(deltaTime, WINDOW_HEIGHT);
-					break;
+						break;
 				}
 			}
 		}
@@ -65,21 +65,9 @@ int main(int argc, char* args[]){
 		Uint32 currentFrameTime = SDL_GetTicks();
 		deltaTime = (currentFrameTime - lastFrameTime)/1000.0f; //divide to convert to seconds
 		lastFrameTime = currentFrameTime;
-		accumulator += deltaTime;
+		
 
 		ball.updatePos(deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT);
-
-
-		//movement updates should come before this point
-		if (accumulator>FIXED_TIMESTAMP){
-			accumulator-=FIXED_TIMESTAMP;
-		} else {
-			window.renderInterpolated(tileLeft, accumulator);
-			window.renderInterpolated(ball, accumulator);
-		}
-
-
-		
 
 		window.clear(); //clear the screen before displaying the new frame to prevent overlapping
 
